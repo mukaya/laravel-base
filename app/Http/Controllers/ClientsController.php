@@ -14,9 +14,17 @@ class ClientsController extends Controller
    }
    public function store()
    {
+    request()->validate([
+        'pseudo'=>'required',
+        'email'=>'required|email'
+    ]);
     $pseudo = request('pseudo');
+    $email = request('email');
+
     $client = new Client();
     $client->name = $pseudo;
+    $client->email = $email;
+
     $client->save();
     return back();
    }
