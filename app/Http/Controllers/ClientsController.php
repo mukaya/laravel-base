@@ -9,6 +9,6 @@ class ClientsController extends Controller
    public function list()
    {
        $clients = ['Osée', 'Mukaya', 'Tshimanga'];
-       return view('client.index',['clients'=>$clients]);
+       return view('clients.index',['clients'=>$clients]);
    }
 }
