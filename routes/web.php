@@ -20,3 +20,5 @@ Route::view('a-propos', 'a-propos');
 Route::view('contact', 'contact');
 Route::get('clients','ClientsController@list');
 
+Route::post('clients', 'ClientsController@store');
+

@@ -12,4 +12,12 @@ class ClientsController extends Controller
        $clients = Client::all();
        return view('clients.index',['clients'=>$clients]);
    }
+   public function store()
+   {
+    $pseudo = request('pseudo');
+    $client = new Client();
+    $client->name = $pseudo;
+    $client->save();
+    return back();
+   }
 }
