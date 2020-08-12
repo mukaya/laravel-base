@@ -2,34 +2,31 @@
 
 @section('content')
 <h1>List of customer</h1>
-<ul>
-   @foreach ($clients as $client)
-      <li>{{$client->name}}  <em>{{$client->email}}</em></li>
-   @endforeach
-</ul>
+
+<a href="/clients/create" class="btn btn-primary m-3">Nouveau client</a>
 <hr/>
 <div class="container">
-    <form action="/clients" method="POST">
-        @csrf
-        <div class="form-group">
-            <input type="text" class="form-control" name="pseudo" id="pseudo" placeholder="Your name"/>
-        </div>
-        @error('pseudo')
-        <div class="alert alert-danger">
-            {{ $errors->first('pseudo')}}
-        </div>
-        @enderror
-        <div class="form-group">
-            <input type="email" class="form-control" name="email" id="email" placeholder="Your email"/>
-        </div>
-        @error('email')
-            <div class="alert alert-danger">
-                {{$errors->first('email')}}
-            </div>
-        @enderror
-        <div class="form-group">
-           <button type="submit" class="btn btn-primary">Add a customer</button>
-        </div>
-    </form>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Status</th>
+            <th scope="col">entreprise</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($clients as $client)
+            <tr>
+                <td>{{$client->id}}</td>
+                <td><a href="/clients/{{$client->id}}">{{$client->name}}</a></td>
+                <td>{{$client->email}}</td>
+                <td>{{$client->status}}</td>
+                <td>{{$client->entreprise->name}}</td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
 </div>
 @endsection
